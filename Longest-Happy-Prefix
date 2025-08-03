@@ -1,0 +1,21 @@
+class Solution {
+    fun longestPrefix(s: String): String {
+        val wow = IntArray(s.length)
+        var left1 = 0
+        var left2 = 1
+        while(left2 < s.length && left1 < s.length-1){
+            if(s[left2] == s[left1]){
+                wow[left2++] = ++left1
+            }
+            else{
+                if(left1 > 0){
+                    left1 = wow[left1-1]
+                }
+                else{
+                    wow[left2++] = 0
+                }
+            }
+        }
+        return s.substring(0 until wow[wow.size-1])
+    }
+}
